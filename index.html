@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Video to Blob URL</title>
+</head>
+<body>
+  <h1>Play Local Video as Blob URL</h1>
+  
+  <!-- File input to allow users to upload their video -->
+  <input type="file" id="videoInput" accept="video/*">
+  
+  <!-- Video element to play the selected video -->
+  <video id="videoElement" controls width="600" style="background: #000; margin-top: 20px;"></video>
+
+  <script>
+    // Listen for when the user selects a file
+    document.getElementById('videoInput').addEventListener('change', function(event) {
+      const file = event.target.files[0]; // Get the selected file (video)
+      
+      if (file) {
+        // Create a blob URL for the selected video file
+        const blobUrl = URL.createObjectURL(file);
+        
+        // Set the blob URL as the video source and play the video
+        const videoElement = document.getElementById('videoElement');
+        videoElement.src = blobUrl;
+        videoElement.play(); // Automatically start playing the video
+      } else {
+        console.error('No file selected.');
+      }
+    });
+  </script>
+</body>
+</html>
